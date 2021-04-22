@@ -9,7 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "http-auth": "^3.2.3",
+    "http-auth": "3.2.3",
     "pug": "^2.0.4"
   },
   "engines": {
