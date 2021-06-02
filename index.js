@@ -1,16 +1,28 @@
+// 次にアクセスするとBasic認証のダイアログが表示される
+// http://localhost:8000/enquetes/yaki-shabu
+// http://localhost:8000/logout にアクセスするとログアウトする
 'use strict';
 const http = require('http');
 const pug = require('pug');
+// Basic認証をするためのモジュール 他にはCookieを使った認証やOAuthを使った認証がある
 const auth = require('http-auth');
 const basic = auth.basic(
+  // Basic 認証時に保護する領域を規定する文字列
   { realm: 'Enquetes Area.' },
   (username, password, callback) => {
+    // このIDとPWがChromeの開発者ツールのNetworkタブのリクエストヘッダから見れる
+    // Base64 エンコードされた値だが、JavaScriptでatob('Z3Vlc3Q6eGFYWkpRbUU=')とすれば復元できる
+    // つまり暗号化はなされていない
     callback(username === 'guest' && password === 'xaXZJQmE');
   });
+  // 第一引数にbasicオブジェクトを渡してBasic認証に対応させてserverのオブジェクトを生成
 const server = http.createServer(basic, (req, res) => {
   console.info('Requested by ' + req.socket.remoteAddress);
-
+  // パスが/logoutのときはログアウトしました、と書き出し、
+  // ステータスコード 401 - Unauthorized を返す処理
   if (req.url === '/logout') {
+    // ステータスコードの仕様は次に記載
+    // https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
     res.writeHead(401, {
       'Content-Type': 'text/plain; charset=utf-8'
     });
