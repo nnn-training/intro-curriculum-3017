@@ -27,7 +27,8 @@ const server = http.createServer(basic.check((req, res) => {
       if (req.url === '/') {
         res.write('<!DOCTYPE html><html lang="ja"><body>' +
           '<h1>アンケートフォーム</h1>' +
-          '<a href="/enquetes">アンケート一覧</a>' +
+          '<p><a href="/enquetes">アンケート一覧</a></p>' +
+          '<p><button type="button" onclick="location.href=`/logout`">ログアウト</button></p>' +
           '</body></html>');
       } else if (req.url === '/enquetes') {
         res.write('<!DOCTYPE html><html lang="ja"><body>' +
