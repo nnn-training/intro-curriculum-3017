@@ -2,6 +2,17 @@ doctype html
 html(lang="jp")
   head
     meta(charset="UTF-8")
+    style(type="text/css").
+      body {
+        background-color: #0ef;
+      }
+      a {
+        display: block;
+        font-size: 130%;
+      }
+      input {
+        background-color: #0cf;
+      }
     title アンケート
   body
     h1 どちらが食べたいですか？
@@ -13,3 +24,4 @@ html(lang="jp")
       input(type="radio", name="favorite", value=secondItem)
       span #{secondItem} 
       button(type="submit") 投稿
+      a(href="/logout") ログアウト
