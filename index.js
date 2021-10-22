@@ -25,18 +25,18 @@ const server = http.createServer(basic.check((req, res) => {
   switch (req.method) {
     case 'GET':
       if (req.url === '/') {
-        res.write('<!DOCTYPE html><html lang="ja"><body>' +
-          '<h1>アンケートフォーム</h1>' +
-          '<a href="/enquetes">アンケート一覧</a>' +
-          '</body></html>');
+        res.write(
+          pug.renderFile('./toppage.pug', {
+            path: req.url,
+          })
+        );
       } else if (req.url === '/enquetes') {
-        res.write('<!DOCTYPE html><html lang="ja"><body>' +
-          '<h1>アンケート一覧</h1><ul>' +
-          '<li><a href="/enquetes/yaki-shabu">焼き肉・しゃぶしゃぶ</a></li>' +
-          '<li><a href="/enquetes/rice-bread">ごはん・パン</a></li>' +
-          '<li><a href="/enquetes/sushi-pizza">寿司・ピザ</a></li>' +
-          '</ul></body></html>');
-      } else if (req.url === '/enquetes/yaki-shabu') {
+        res.write(
+          pug.renderFile('./ichiran.pug', {
+            path: req.url,
+          })
+        );
+          } else if (req.url === '/enquetes/yaki-shabu') {
         res.write(
           pug.renderFile('./form.pug', {
             path: req.url,
@@ -58,6 +58,19 @@ const server = http.createServer(basic.check((req, res) => {
           firstItem: '寿司',
           secondItem: 'ピザ'
         }));
+      } else if (req.url === '/enquetes/coffee-tea') {
+        res.write(pug.renderFile('./form.pug', {
+          path: req.url,
+          firstItem: 'コーヒー',
+          secondItem: '紅茶'
+        }));
+      } else if (req.url === '/enquetes/ice-parfait') {
+        res.write(pug.renderFile('./form.pug', {
+          path: req.url,
+          firstItem: 'アイスクリーム',
+          secondItem: 'パフェ'
+        }));
+
       }
       res.end();
       break;
