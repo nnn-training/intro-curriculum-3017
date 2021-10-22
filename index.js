@@ -68,14 +68,19 @@ const server = http.createServer(basic.check((req, res) => {
           rawData = rawData + chunk;
         })
         .on('end', () => {
-          const qs = require('querystring');
-          const answer = qs.parse(rawData);
-          const body = answer['name'] + 'さんは' +
-            answer['favorite'] + 'に投票しました';
-          console.info(body);
-          res.write('<!DOCTYPE html><html lang="ja"><body><h1>' +
-            body + '</h1></body></html>');
-          res.end();
+          const answer = new URLSearchParams(rawData); // qs は、非推奨になったということなので、他の書き方にしてみる
+            let body;
+            // アイテムが選択されていなくても投票できてしまうので、選択されているかどうかで表示結果を分岐させる
+            if (answer.get('favorite')) { // アイテムが選択されている場合は、"ログイン時のユーザー名を入れて"結果を表示
+              body = req.user + 'さんは' +
+              answer.get('favorite') + 'に投票しました';
+            } else { // 選択されていない場合は、エラーを表示
+              body = 'アイテムが選択されていません';
+            }
+            console.info(body);
+            res.write('<!DOCTYPE html><html lang="ja"><body><h1>' +
+              body + '</h1></body></html>');
+            res.end();
         });
       break;
     default:
