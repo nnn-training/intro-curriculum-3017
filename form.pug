@@ -3,13 +3,29 @@ html(lang="jp")
   head
     meta(charset="UTF-8")
     title アンケート
+    style(type="text/css").
+      a {
+        color: #327bff;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      button:hover {
+        opacity: .5;
+      }
   body
     h1 どちらが食べたいですか？
     form(method="post", action=path)
       span 名前: 
-      input(type="text", name="name")
-      input(type="radio", name="favorite", value=firstItem)
-      span #{firstItem} 
-      input(type="radio", name="favorite", value=secondItem)
-      span #{secondItem} 
+      input(type="text", name="name" value="ゲスト")
+
+      input(type="radio", name="favorite", value=firstItem id ="firstItem" checked)
+      label(for="firstItem")  #{firstItem} 
+
+      input(type="radio", name="favorite", value=secondItem id="secondItem")
+      label(for="secondItem")  #{secondItem} 
+
       button(type="submit") 投稿
+      p
+        a(href="/logout") ログアウトする
