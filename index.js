@@ -35,7 +35,9 @@ const server = http.createServer(basic.check((req, res) => {
           '<li><a href="/enquetes/yaki-shabu">焼き肉・しゃぶしゃぶ</a></li>' +
           '<li><a href="/enquetes/rice-bread">ごはん・パン</a></li>' +
           '<li><a href="/enquetes/sushi-pizza">寿司・ピザ</a></li>' +
-          '</ul></body></html>');
+          '</ul>' + 
+          '<a href="/logout">ログアウト</a>' +
+          '</body></html>');
       } else if (req.url === '/enquetes/yaki-shabu') {
         res.write(
           pug.renderFile('./form.pug', {
