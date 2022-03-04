@@ -8,8 +8,15 @@ html(lang="jp")
     form(method="post", action=path)
       span 名前: 
       input(type="text", name="name")
+      br
+      br
       input(type="radio", name="favorite", value=firstItem)
       span #{firstItem} 
       input(type="radio", name="favorite", value=secondItem)
-      span #{secondItem} 
+      span #{secondItem}
+      br
+      br
       button(type="submit") 投稿
+      br
+      br
+    a(href="/logout") ログアウトはこちら
