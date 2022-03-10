@@ -74,6 +74,7 @@ const server = http.createServer(basic.check((req, res) => {
             answer['favorite'] + 'に投票しました';
           console.info(body);
           res.write('<!DOCTYPE html><html lang="ja"><body><h1>' +
+            '<a href="/logout">練習問題外。個人学習のログアウトリンク</a><br>' +
             body + '</h1></body></html>');
           res.end();
         });
