@@ -15,6 +15,7 @@ const server = http.createServer(basic.check((req, res) => {
       'Content-Type': 'text/plain; charset=utf-8'
     });
     res.end('ログアウトしました');
+    console.info('ログアウトしました');
     return;
   }
 
