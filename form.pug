@@ -5,11 +5,20 @@ html(lang="jp")
     title アンケート
   body
     h1 どちらが食べたいですか？
-    form(method="post", action=path)
-      span 名前: 
-      input(type="text", name="name")
-      input(type="radio", name="favorite", value=firstItem)
-      span #{firstItem} 
-      input(type="radio", name="favorite", value=secondItem)
-      span #{secondItem} 
-      button(type="submit") 投稿
+    p
+      a(href="/") トップへ
+    p
+      a(href="/logout") ログアウトする
+    form(method="post" action=path)
+      p
+        span 名前: 
+        input(type="text" name="name")
+      p
+        label
+          input(type="radio" name="favorite" value=firstItem)
+          span #{firstItem}
+        label
+          input(type="radio" name="favorite" value=secondItem)
+          span #{secondItem}
+      p
+        button(type="submit") 投稿
