@@ -17,6 +17,7 @@ const server = http
         'Content-Type': 'text/plain; charset=utf-8'
       });
       res.end('ログアウトしました');
+      console.info('ログアウトしました');
       return;
     }
 
